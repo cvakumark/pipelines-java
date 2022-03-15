@@ -12,7 +12,7 @@ pool:
 stages:
 - stage: Build
   jobs:
-    - job: Maven Build
+    - job: 'Maven_Build'
       steps:
         - task: Maven@3
           inputs:
@@ -30,11 +30,11 @@ stages:
             summaryFileLocation: "$(System.DefaultWorkingDirectory)/**/site/jacoco/jacoco.xml"
             reportDirectory: "$(System.DefaultWorkingDirectory)/**/site/jacoco"
             failIfCoverageEmpty: true
-- stage: Deploymnet
+- stage: Deployment
   jobs:
   - deployment: 
     displayName: Dev Deploy
-    environment: Dev Maven
+    environment: Dev_Maven
     strategy:
      runOnce:
       deploy:
