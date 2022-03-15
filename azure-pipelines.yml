@@ -34,7 +34,7 @@ stages:
   jobs:
   - deployment: 
     displayName: Dev Deploy
-    environment: Dev-Maven
+    environment: Dev Maven
     strategy:
      runOnce:
       deploy:
