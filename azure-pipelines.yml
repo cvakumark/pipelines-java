@@ -9,20 +9,35 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: "JaCoCo"
-    summaryFileLocation: "$(System.DefaultWorkingDirectory)/**/site/jacoco/jacoco.xml"
-    reportDirectory: "$(System.DefaultWorkingDirectory)/**/site/jacoco"
-    failIfCoverageEmpty: true
+stages:
+- stage: Build
+  jobs:
+    - job: Maven Build
+      steps:
+        - task: Maven@3
+          inputs:
+            mavenPomFile: 'pom.xml'
+            mavenOptions: '-Xmx3072m'
+            javaHomeOption: 'JDKVersion'
+            jdkVersionOption: '1.8'
+            jdkArchitectureOption: 'x64'
+            publishJUnitResults: true
+            testResultsFiles: '**/surefire-reports/TEST-*.xml'
+            goals: 'package'
+        - task: PublishCodeCoverageResults@1
+          inputs:
+            codeCoverageTool: "JaCoCo"
+            summaryFileLocation: "$(System.DefaultWorkingDirectory)/**/site/jacoco/jacoco.xml"
+            reportDirectory: "$(System.DefaultWorkingDirectory)/**/site/jacoco"
+            failIfCoverageEmpty: true
+- stage: Deploymnet
+  jobs:
+  - deployment: 
+    displayName: Dev Deploy
+    environment: Dev-Maven
+    strategy:
+     runOnce:
+      deploy:
+       steps:
+       - script: echo Running in the Dev-Maven environment as deployment job
+         displayName: 'Dev Maven based stage'
