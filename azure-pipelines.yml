@@ -8,6 +8,15 @@ trigger: none
 pool:
   vmImage: ubuntu-latest
 
+resources:
+ pipelines:
+   - pipeline: mySourcePipeline
+     source: 'cvakumark.DotNetAzureDevOps'
+     trigger:
+      branches:
+      - main
+
+
 stages:
 - stage: checkout
   jobs:
@@ -15,6 +24,7 @@ stages:
       steps:
       - checkout: self
       - script: ls $(Build.SourcesDirectory)
+      - script: echo $(resources.pipeline.mySourcePipeline.pipelineName)
       
       
 - stage: Build
