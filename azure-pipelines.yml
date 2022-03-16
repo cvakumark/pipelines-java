@@ -26,7 +26,7 @@ stages:
       steps:
       - checkout: self
       - checkout: tools
-      - script: dir ${Build.SourceDirectory}
+      - script: dir $(Build.SourcesDirectory)
 
       
 - stage: Build
