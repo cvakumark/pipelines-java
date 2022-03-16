@@ -10,10 +10,11 @@ pool:
 
 resources:
   pipelines:
-    - pipeline: secondPipeline
-      source: cvakumark.DotNetAzureDevOps
-      project: DotNetAzureDevOps
-      trigger: true
+  - pipeline: secondPipeline
+    source: cvakumark.DotNetAzureDevOps
+    project: DotNetAzureDevOps
+    trigger: true
+    
 stages:
 - stage: checkout
   jobs:
