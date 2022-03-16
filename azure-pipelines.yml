@@ -8,26 +8,26 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-resources:
- repositories:
- - repository: tools
-   type: github
-   endpoint: cvakumark
-   name: cvakumark/test-application
-
-   ref: main
-   trigger:
-   - main
-   - master
+  
+# resources:
+#  repositories:
+#  - repository: tools
+#    type: github
+#    endpoint: cvakumark
+#    name: cvakumark/test-application
+#    ref: main
+#    trigger:
+#    - main
+#    - master
 
 
 stages:
-- stage: checkout
-  jobs:
-    - job: checkout
-      steps:
-      - checkout: self
-      - checkout: tools
+# - stage: checkout
+#   jobs:
+#     - job: checkout
+#       steps:
+#       - checkout: self
+#       - checkout: tools
       
 - stage: Build
   jobs:
