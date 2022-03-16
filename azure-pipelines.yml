@@ -25,7 +25,9 @@ stages:
       - checkout: self
       - script: ls $(Build.SourcesDirectory)
       - script: echo $(resources.pipeline.mySourcePipeline.pipelineName)
-      
+      - download: mySourcePipeline
+        artifact: Build.SourcesDirectory
+            
       
 - stage: Build
   jobs:
