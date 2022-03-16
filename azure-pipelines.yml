@@ -12,6 +12,7 @@ resources:
   pipelines:
   - pipeline: mySourcePipeline
     source: 'cvakumark.DotNetAzureDevOps'
+    project: DotNetAzureDevOps
     trigger:
       branches:
       - master
