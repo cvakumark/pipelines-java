@@ -2,6 +2,16 @@
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
+resources:
+ repositories:
+ - repository: tools
+   type: github
+   endpoint: cvakumark
+   name: cvakumark/test-application
+   ref: main
+   trigger:
+   - master
+
 
 trigger:
 - master
@@ -9,25 +19,13 @@ trigger:
 pool:
   vmImage: ubuntu-latest
   
-# resources:
-#  repositories:
-#  - repository: tools
-#    type: github
-#    endpoint: cvakumark
-#    name: cvakumark/test-application
-#    ref: main
-#    trigger:
-#    - main
-#    - master
-
-
 stages:
-# - stage: checkout
-#   jobs:
-#     - job: checkout
-#       steps:
-#       - checkout: self
-#       - checkout: tools
+- stage: checkout
+  jobs:
+    - job: checkout
+      steps:
+      - checkout: self
+      - checkout: tools
       
 - stage: Build
   jobs:
