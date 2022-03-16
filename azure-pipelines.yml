@@ -4,11 +4,12 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 resources:
   pipelines:
-    - pipeline: mySourcePipeline
-      source: 'cvakumark.DotNetAzureDevOps'
-      trigger:
-        branches:
-        - master
+  - pipeline: mySourcePipeline
+    source: 'cvakumark.DotNetAzureDevOps'
+    trigger:
+      branches:
+      - master
+
 trigger: none
 
 pool:
@@ -21,7 +22,7 @@ stages:
       steps:
       - checkout: self
       - script: ls $(Build.SourcesDirectory)
-      - script: echo Triggered by the source pipeline '${{resources.pipeline.mySourcePipeline.pipelineName}}'
+      - script: echo Triggered by the source pipeline '${{ resources.pipeline.mySourcePipeline.pipelineName }}'
 
       
 - stage: Build
