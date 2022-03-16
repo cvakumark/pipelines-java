@@ -2,18 +2,22 @@
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
-resources:
-  pipelines:
-  - pipeline: mySourcePipeline
-    source: 'cvakumark.DotNetAzureDevOps'
-    trigger:
-      branches:
-      - master
 
 trigger: none
 
 pool:
   vmImage: ubuntu-latest
+
+
+resources:
+  pipelines:
+  - pipeline: mySourcePipeline
+    source: 'cvakumark.DotNetAzureDevOps'
+    project: DotNetAzureDevOps
+    trigger:
+      branches:
+      - master
+
 
 stages:
 - stage: checkout
