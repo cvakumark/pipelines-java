@@ -3,18 +3,13 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 resources:
- repositories:
- - repository: tools
-   type: github
-   endpoint: cvakumark
-   name: cvakumark/test-application
-   ref: master
-   trigger:
-   - master
-
-
-trigger:
-- master
+  pipelines:
+    - pipeline: mySourcePipeline
+      source: 'cvakumark.DotNetAzureDevOps'
+      trigger:
+        branches:
+        - master
+trigger: none
 
 pool:
   vmImage: ubuntu-latest
@@ -25,10 +20,8 @@ stages:
     - job: checkout
       steps:
       - checkout: self
-      - checkout: tools
-      - script: dir $(Build.SourcesDirectory)
-      - script: mkdir $(Build.SourcesDirectory)/hello
       - script: ls $(Build.SourcesDirectory)
+      - script: echo Triggered by the source pipeline '${{resources.pipeline.mySourcePipeline.pipelineName}}'
 
       
 - stage: Build
