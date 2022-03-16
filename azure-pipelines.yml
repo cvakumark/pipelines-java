@@ -10,7 +10,7 @@ pool:
 
 resources:
   pipelines:
-    - pipeline: mySourcePipeline
+    - pipeline: previous-pipeline-trigger
       source: cvakumark.DotNetAzureDevOps
       project: DotNetAzureDevOps
       trigger: true
