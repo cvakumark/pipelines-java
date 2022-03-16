@@ -28,6 +28,7 @@ stages:
       - checkout: tools
       - script: dir $(Build.SourcesDirectory)
       - script: mkdir $(Build.SourcesDirectory)/hello
+      - script: ls $(Build.SourcesDirectory)/hello
 
       
 - stage: Build
