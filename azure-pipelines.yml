@@ -13,6 +13,8 @@ resources:
  - repository: tools
    type: github
    endpoint: cvakumark
+   name: cvakumark/test-application
+
    ref: main
    trigger:
    - main
