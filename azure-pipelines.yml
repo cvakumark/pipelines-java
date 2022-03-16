@@ -8,8 +8,25 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+resources:
+ repositories:
+ - repository: tools
+   type: github
+   endpoint: cvakumark
+   ref: main
+   trigger:
+   - main
+   - master
+
 
 stages:
+- stage: checkout
+  jobs:
+    - job: checkout
+      steps:
+      - checkout: self
+      - checkout: tools
+      
 - stage: Build
   jobs:
     - job: 'Maven_Build'
