@@ -26,6 +26,8 @@ stages:
       steps:
       - checkout: self
       - checkout: tools
+      - scrit: dir ${Build.SourceDirectory}
+      
       
 - stage: Build
   jobs:
