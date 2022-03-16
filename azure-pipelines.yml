@@ -11,7 +11,7 @@ pool:
 resources:
   pipelines:
   - pipeline: secondPipeline
-    source: cvakumark.DotNetAzureDevOps
+    source: 'cvakumark.DotNetAzureDevOps'
     project: DotNetAzureDevOps
     trigger: 
      branches:
