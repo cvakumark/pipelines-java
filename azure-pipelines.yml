@@ -10,7 +10,7 @@ pool:
 
 resources:
   pipelines:
-  - pipeline: secondPipeline
+  - pipeline: mySourcePipeline
     source: 'cvakumark.DotNetAzureDevOps'
     project: DotNetAzureDevOps
     trigger: 
@@ -25,7 +25,7 @@ stages:
       steps:
       - checkout: self
       - script: ls $(Build.SourcesDirectory)
-      - script: echo Triggered by the source pipeline
+      - script: echo $( resources.pipeline.mySourcePipeline.pipelineName)
 
       
 - stage: Build
